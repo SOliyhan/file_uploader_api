@@ -7,8 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('csv_app.urls')),
     path('', HomepageView.as_view(), name='home'),
-    path('api/token/', TokenObtainPairView.as_view(), name='access-token'),
-    path('api/token/refresh/'\
-         , TokenRefreshView.as_view(), name='refresh-token'),
+    path('api/token', TokenObtainPairView.as_view(), name='access-token'),
+    path('api/token/refresh', TokenRefreshView.as_view(), name='refresh-token'),
 ]
 

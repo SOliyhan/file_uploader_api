@@ -5,7 +5,6 @@ import pandas as pd
 from dateutil.parser import parse as date_parse
 from rest_framework.views import APIView
 from django.http import JsonResponse
-from django.core.exceptions import ValidationError
 from .models import Game
 from .serializers import GameSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -13,7 +12,7 @@ from django.db import models
 
 from django.db.models import Q
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated 
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 file_dir = os.path.dirname(os.path.realpath('__file__'))
@@ -23,10 +22,9 @@ file_path = os.path.join(parent_dir, file_name)
 
 
 class HomepageView(APIView):
+    permission_classes= [AllowAny]
     def get(self, request):
-        return JsonResponse({'message': 'Welcome to the CSV upload and storage backend server. '
-                             'Use the /api/upload/ endpoint to upload a CSV file containing '
-                             'data in the format: Name, Age, City, Country.'}, status=200)
+        return JsonResponse({'message': 'Welcome to the File Uploader API. Read documentation on github for more details'}, status=200)
 
 
 class UploadCSV(APIView):
