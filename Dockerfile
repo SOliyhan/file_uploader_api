@@ -15,4 +15,5 @@ COPY . .
 EXPOSE 8000
 
 # Run gunicorn as the main process
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "csv_project.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "5", "--timeout", "120", "csv_project.wsgi:application"]
+
